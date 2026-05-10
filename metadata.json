@@ -1,0 +1,83 @@
+{
+  "package_name": null,
+  "package_version": null,
+  "advisory_id": null,
+  "cve_id": null,
+  "vulnerability_class": null,
+  "severity": null,
+  "license": {
+    "commercial_use_likely_allowed": true,
+    "copyright_notice_required": true,
+    "license_html_url": null,
+    "license_name": "Apache License 2.0",
+    "license_risk_level": "low",
+    "license_spdx_id": "Apache-2.0",
+    "license_text_path": "runs/extract_advisory_v1/licenses/keras-team__keras__LICENSE.txt",
+    "license_url": "https://api.github.com/licenses/apache-2.0",
+    "notice_required": true,
+    "redistribution_notes": "Apache-2.0 is permissive, but license text, attribution, and NOTICE requirements must be preserved where applicable.",
+    "repo_license_detected": true,
+    "repo_license_detected_at": "2026-05-08T08:48:42.952997+00:00"
+  },
+  "sanitization": {
+    "schema_version": "cleanrepair.sanitization.v0.1",
+    "status": "sanitized_ok",
+    "pii_risk_detected": false,
+    "secret_risk_detected": false,
+    "patterns_checked": [
+      "api_key",
+      "aws_key",
+      "bearer_token",
+      "deepseek_key",
+      "email",
+      "github_token",
+      "ip_address",
+      "openai_key",
+      "password",
+      "private_key",
+      "secret",
+      "token"
+    ],
+    "patterns_matched": [],
+    "replacements_count": 0,
+    "files_checked": [
+      "buggy_file.py",
+      "fixed_file.py",
+      "diff.patch",
+      "raw/file_before.py",
+      "raw/file_after.py"
+    ],
+    "raw_before_sha256": "b6c528f6641b31af38df7b474e738a58584379ab616300dbd027967034d34c14",
+    "raw_after_sha256": "98d9576a4979f303c2ee75910154e1f9eb10d14376c7eab9a62236657610f349",
+    "sanitized_before_sha256": "b6c528f6641b31af38df7b474e738a58584379ab616300dbd027967034d34c14",
+    "sanitized_after_sha256": "98d9576a4979f303c2ee75910154e1f9eb10d14376c7eab9a62236657610f349",
+    "sanitized_diff_sha256": "2ae1d46607669c03c08a40a56de0a560b65dc0730ff0aa1a327a4adfb21cfbb3",
+    "sanitizer_version": "cleanrepair_sanitizer.v0.1",
+    "report_path": "sanitization_report.json",
+    "diff_path": "sanitization_diff.patch",
+    "risk_classification": "no_secret",
+    "confirmed_secret_count": 0,
+    "possible_secret_count": 0,
+    "security_term_only_count": 0,
+    "secret_findings_count": 0,
+    "created_at": "2026-05-10T03:29:28.181672+00:00"
+  },
+  "quality_level": "L5_AdvisoryBacked_Candidate",
+  "mode": "extractive_commit_before_after",
+  "change_summary": {
+    "after_snippet": "            # ------------------------------------------------------\n\n            # Skip any objects that are not proper datasets\n            if not isinstance(value, h5py.Dataset):\n                continue\n\n            if value.external:\n                raise ValueError(",
+    "before_snippet": "            # ------------------------------------------------------\n\n            # Skip any objects that are not proper datasets\n            if not hasattr(value, \"shape\") or not hasattr(value, \"dtype\"):\n                continue\n\n            shape = value.shape\n            dtype = value.dtype",
+    "confidence": 0.95,
+    "selected_hunk_reason": "",
+    "selected_hunk_score": 0.0,
+    "source": "verified_diff",
+    "summary": "Add HDF5 shape/rank validation and overflow checks to prevent denial-of-service and memory corruption."
+  },
+  "evidence_from_diff": null,
+  "validation": {
+    "diff_lines": 8,
+    "input_output_changed": true,
+    "input_py_compile": true,
+    "output_py_compile": true
+  }
+}
